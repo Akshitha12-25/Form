@@ -24,7 +24,6 @@ function RegistrationForm() {
 
   const navigate = useNavigate();
 
-  // VALIDATION FUNCTION
   const validate = (fieldValues = values) => {
     const temp = { ...errors };
 
@@ -87,31 +86,26 @@ function RegistrationForm() {
     setErrors(temp);
   };
 
-  // Revalidate whenever values change
   useEffect(() => {
     validate(values);
   }, [values]);
 
-  // Check form validity
   useEffect(() => {
     const noErrors = Object.values(errors).every((x) => x === "");
     const allFilled = Object.values(values).every((x) => x !== "");
     setIsFormValid(noErrors && allFilled);
   }, [errors, values]);
 
-  // HANDLE CHANGE
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
 
-  // HANDLE BLUR
   const handleBlur = (e) => {
     const { name } = e.target;
     setTouched({ ...touched, [name]: true });
   };
 
-  // SUBMIT HANDLER
   const handleSubmit = (e) => {
     e.preventDefault();
     setTouched(
@@ -124,7 +118,6 @@ function RegistrationForm() {
       navigate("/summary", { state: { formData: values } });
   };
 
-  // RENDER ERROR MESSAGE
   const renderError = (field) =>
     touched[field] && errors[field] ? (
       <span className="error-text">{errors[field]}</span>
@@ -136,7 +129,6 @@ function RegistrationForm() {
 
       <form className="form" onSubmit={handleSubmit} noValidate>
         
-        {/* FIRST NAME */}
         <div className="form-control">
           <label>First Name *</label>
           <input
@@ -149,7 +141,6 @@ function RegistrationForm() {
           {renderError("firstName")}
         </div>
 
-        {/* LAST NAME */}
         <div className="form-control">
           <label>Last Name *</label>
           <input
@@ -162,7 +153,6 @@ function RegistrationForm() {
           {renderError("lastName")}
         </div>
 
-        {/* USERNAME */}
         <div className="form-control">
           <label>Username *</label>
           <input
@@ -175,7 +165,6 @@ function RegistrationForm() {
           {renderError("username")}
         </div>
 
-        {/* EMAIL */}
         <div className="form-control">
           <label>Email *</label>
           <input
@@ -189,7 +178,6 @@ function RegistrationForm() {
           {renderError("email")}
         </div>
 
-        {/* PASSWORD */}
         <div className="form-control">
           <label>Password *</label>
           <div style={{ display: "flex", gap: "8px" }}>
@@ -213,7 +201,6 @@ function RegistrationForm() {
           {renderError("password")}
         </div>
 
-        {/* COUNTRY CODE + PHONE */}
         <div className="form-control">
           <label>Phone Number *</label>
           <div style={{ display: "flex", gap: "8px" }}>
@@ -246,7 +233,6 @@ function RegistrationForm() {
           {renderError("phone")}
         </div>
 
-        {/* COUNTRY */}
         <div className="form-control">
           <label>Country *</label>
           <input
@@ -259,7 +245,6 @@ function RegistrationForm() {
           {renderError("country")}
         </div>
 
-        {/* CITY */}
         <div className="form-control">
           <label>City *</label>
           <input
@@ -272,7 +257,6 @@ function RegistrationForm() {
           {renderError("city")}
         </div>
 
-        {/* PAN */}
         <div className="form-control">
           <label>PAN *</label>
           <input
@@ -286,7 +270,6 @@ function RegistrationForm() {
           {renderError("pan")}
         </div>
 
-        {/* AADHAAR */}
         <div className="form-control">
           <label>Aadhaar *</label>
           <input
